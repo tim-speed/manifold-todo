@@ -33,7 +33,7 @@ let AddTodo = ({ dispatch }) => {
 AddTodo = connect()(AddTodo)
 
 AddTodo.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func
 }
 
 export default AddTodo

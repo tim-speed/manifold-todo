@@ -4,6 +4,7 @@
         "react"
     ],
     "plugins": [
+      "transform-regenerator",
       "transform-es2015-spread",
       "transform-object-rest-spread"
     ]
