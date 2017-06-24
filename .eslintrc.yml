@@ -1,4 +1,7 @@
 extends: [ standard, standard-react ]
+plugins: [ jest ]
+env:
+  jest/globals: true
 rules:
   generator-star-spacing:
     - error

@@ -1,0 +1,10 @@
+{
+  "firebase": {
+    "apiKey": "",
+    "authDomain": "manifold-todo-57b6e.firebaseapp.com",
+    "databaseURL": "https://manifold-todo-57b6e.firebaseio.com",
+    "projectId": "manifold-todo-57b6e",
+    "storageBucket": "manifold-todo-57b6e.appspot.com",
+    "messagingSenderId": "1098346890773"
+  }
+}

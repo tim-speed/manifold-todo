@@ -95,10 +95,10 @@ export function* fetchTodoListFirebase() {
       type: 'FETCH_TODO_LIST_FAILED'
     })
   } else {
-    console.info('TODO_LIST_RECEIVED', todoObjs)
+    console.info('FETCHED_TODO_LIST', todoObjs)
     yield put({
       list: todoObjs,
-      type: 'TODO_LIST_RECEIVED'
+      type: 'FETCHED_TODO_LIST'
     })
   }
 }
@@ -110,7 +110,7 @@ export default function* watchTodo() {
 }
 
 // Global export, to satisfy eslint && other deps
-// TODO: Figure out best way to have global app bootstrap for nextJS and put it there
+// TODO: Figure out how to centralize... this is really annoying
 if (typeof window !== 'undefined') {
   window.regeneratorRuntime = regeneratorRuntime
 }

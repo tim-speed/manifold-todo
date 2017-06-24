@@ -1,6 +1,6 @@
 const todos = (state = [], action) => {
   switch (action.type) {
-    case 'TODO_LIST_RECEIVED':
+    case 'FETCHED_TODO_LIST':
       return action.list
     case 'ADDED_TODO':
       return [
