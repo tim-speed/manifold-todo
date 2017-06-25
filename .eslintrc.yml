@@ -8,3 +8,4 @@ rules:
     - before: false
       after: true
   space-before-function-paren: [ error, never ]
+  react/jsx-boolean-value: 0

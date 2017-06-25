@@ -4,11 +4,14 @@ import PropTypes from 'prop-types'
 const Todo = ({ onClick, completed, text }) => (
   <li
     onClick={onClick}
-    style={{
-      textDecoration: completed ? 'line-through' : 'none'
-    }}
+    className={completed ? 'complete' : undefined}
   >
-    {text}
+    <span>{text}</span>
+    <style jsx>{`
+      .complete {
+        text-decoration: line-through;
+      }
+    `}</style>
   </li>
 )
 
