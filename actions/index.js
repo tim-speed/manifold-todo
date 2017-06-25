@@ -1,21 +1,22 @@
+import { actions } from '../lib/constants'
 
 export const addTodo = text => {
   return {
-    type: 'ADD_TODO',
+    type: actions.ADD_TODO,
     text
   }
 }
 
 export const setVisibilityFilter = filter => {
   return {
-    type: 'SET_VISIBILITY_FILTER',
+    type: actions.SET_VISIBILITY_FILTER,
     filter
   }
 }
 
 export const toggleTodo = id => {
   return {
-    type: 'TOGGLE_TODO',
+    type: actions.TOGGLE_TODO,
     id
   }
 }

@@ -1,3 +1,4 @@
+import { actions } from '../../lib/constants'
 import reducer from '../../reducers/todos'
 
 describe('reducer/todos', () => {
@@ -9,7 +10,7 @@ describe('reducer/todos', () => {
     expect(
       reducer([], {
         id: 'test',
-        type: 'ADDED_TODO',
+        type: actions.ADDED_TODO,
         text: 'Solo TODO'
       })
     ).toEqual([
@@ -30,7 +31,7 @@ describe('reducer/todos', () => {
           }
         ],
         {
-          type: 'ADDED_TODO',
+          type: actions.ADDED_TODO,
           text: 'Second TODO',
           id: 'test1'
         }
@@ -59,7 +60,7 @@ describe('reducer/todos', () => {
         }
       ], {
         id: 'test',
-        type: 'TOGGLED_TODO',
+        type: actions.TOGGLED_TODO,
         completed: true
       })
     ).toEqual([

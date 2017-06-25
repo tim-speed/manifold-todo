@@ -1,6 +1,7 @@
 import 'regenerator-runtime/runtime'
 import regeneratorRuntime from 'regenerator-runtime'
 import { put, takeEvery } from 'redux-saga/effects'
+import { actions } from '../lib/constants'
 import db from '../services/firebase'
 
 export function* addTodoFirebase(todo) {
@@ -22,17 +23,17 @@ export function* addTodoFirebase(todo) {
     }).catch(err => { firebaseErr = err })
   // Handle Error or Completion
   if (firebaseErr) {
-    console.error('ADD_TODO_FAILED', firebaseErr)
+    console.error(actions.ADD_TODO_FAILED, firebaseErr)
     yield put({
       ...todo,
       err: firebaseErr,
-      type: 'ADD_TODO_FAILED'
+      type: actions.ADD_TODO_FAILED
     })
   } else {
-    console.info('ADDED_TODO', todoObj)
+    console.info(actions.ADDED_TODO, todoObj)
     yield put({
       ...todoObj,
-      type: 'ADDED_TODO'
+      type: actions.ADDED_TODO
     })
   }
 }
@@ -58,17 +59,17 @@ export function* toggleTodoFirebase(todo) {
     }).catch(err => { firebaseErr = err })
   // Handle Error or Completion
   if (firebaseErr) {
-    console.error('TOGGLE_TODO_FAILED', firebaseErr)
+    console.error(actions.TOGGLE_TODO_FAILED, firebaseErr)
     yield put({
       ...todo,
       err: firebaseErr,
-      type: 'TOGGLE_TODO_FAILED'
+      type: actions.TOGGLE_TODO_FAILED
     })
   } else {
-    console.info('TOGGLED_TODO', todoObj)
+    console.info(actions.TOGGLED_TODO, todoObj)
     yield put({
       ...todoObj,
-      type: 'TOGGLED_TODO'
+      type: actions.TOGGLED_TODO
     })
   }
 }
@@ -89,24 +90,24 @@ export function* fetchTodoListFirebase() {
     }).catch(err => { firebaseErr = err })
   // Handle Error or Completion
   if (firebaseErr) {
-    console.error('FETCH_TODO_LIST_FAILED', firebaseErr)
+    console.error(actions.FETCH_TODO_LIST_FAILED, firebaseErr)
     yield put({
       err: firebaseErr,
-      type: 'FETCH_TODO_LIST_FAILED'
+      type: actions.FETCH_TODO_LIST_FAILED
     })
   } else {
-    console.info('FETCHED_TODO_LIST', todoObjs)
+    console.info(actions.FETCHED_TODO_LIST, todoObjs)
     yield put({
       list: todoObjs,
-      type: 'FETCHED_TODO_LIST'
+      type: actions.FETCHED_TODO_LIST
     })
   }
 }
 
 export default function* watchTodo() {
-  yield takeEvery('ADD_TODO', addTodoFirebase)
-  yield takeEvery('TOGGLE_TODO', toggleTodoFirebase)
-  yield takeEvery('FETCH_TODO_LIST', fetchTodoListFirebase)
+  yield takeEvery(actions.ADD_TODO, addTodoFirebase)
+  yield takeEvery(actions.TOGGLE_TODO, toggleTodoFirebase)
+  yield takeEvery(actions.FETCH_TODO_LIST, fetchTodoListFirebase)
 }
 
 // Global export, to satisfy eslint && other deps

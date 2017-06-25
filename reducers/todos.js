@@ -1,8 +1,10 @@
+import { actions } from '../lib/constants'
+
 const todos = (state = [], action) => {
   switch (action.type) {
-    case 'FETCHED_TODO_LIST':
+    case actions.FETCHED_TODO_LIST:
       return action.list
-    case 'ADDED_TODO':
+    case actions.ADDED_TODO:
       return [
         ...state,
         {
@@ -11,7 +13,7 @@ const todos = (state = [], action) => {
           completed: false
         }
       ]
-    case 'TOGGLED_TODO':
+    case actions.TOGGLED_TODO:
       return state.map(todo =>
         (todo.id === action.id)
           ? {...todo, completed: action.completed}
