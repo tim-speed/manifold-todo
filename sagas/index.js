@@ -74,6 +74,29 @@ export function* toggleTodoFirebase(todo) {
   }
 }
 
+export function* removeTodoFirebase(todo) {
+  // Get todo reference
+  const todoRef = db.ref('todo').child(todo.id)
+  let firebaseErr
+  // Yield to Firebase async
+  yield todoRef.remove().catch(err => { firebaseErr = err })
+  // Handle Error or Completion
+  if (firebaseErr) {
+    console.error(actions.REMOVE_TODO_FAILED, firebaseErr)
+    yield put({
+      ...todo,
+      err: firebaseErr,
+      type: actions.REMOVE_TODO_FAILED
+    })
+  } else {
+    console.info(actions.REMOVED_TODO, todo)
+    yield put({
+      ...todo,
+      type: actions.REMOVED_TODO
+    })
+  }
+}
+
 export function* fetchTodoListFirebase() {
   // Get todo reference
   const todoListRef = db.ref('todo')
@@ -107,6 +130,7 @@ export function* fetchTodoListFirebase() {
 export default function* watchTodo() {
   yield takeEvery(actions.ADD_TODO, addTodoFirebase)
   yield takeEvery(actions.TOGGLE_TODO, toggleTodoFirebase)
+  yield takeEvery(actions.REMOVE_TODO, removeTodoFirebase)
   yield takeEvery(actions.FETCH_TODO_LIST, fetchTodoListFirebase)
 }
 

@@ -6,7 +6,8 @@ describe('components/Todo', () => {
   it('should render with provided text without strike-through by default',
     () => {
       const component = shallow(
-        <Todo text='Test Item' completed={false} onClick={() => {}} />
+        <Todo text='Test Item' completed={false} onClick={() => {}}
+          onRemoveClick={() => {}} />
       )
       expect(component.find('span').text()).toEqual('Test Item')
       expect(component.find('li').hasClass('complete')).toEqual(false)
@@ -17,15 +18,21 @@ describe('components/Todo', () => {
       const component = shallow(
         <Todo text='Test Item' completed={false} onClick={() => {
           clicked = true
+        }} onRemoveClick={() => {
+          clicked = true
         }} />
       )
-      component.simulate('click')
+      component.find('span').simulate('click')
+      expect(clicked).toEqual(true)
+      clicked = false
+      component.find('a').simulate('click')
       expect(clicked).toEqual(true)
     })
   it('should render with provided text with strike-through when complete',
     () => {
       const component = shallow(
-        <Todo text='Different Test Item' completed={true} onClick={() => {}} />
+        <Todo text='Different Test Item' completed={true} onClick={() => {}}
+          onRemoveClick={() => {}} />
       )
       expect(component.find('span').text()).toEqual('Different Test Item')
       expect(component.find('li').hasClass('complete')).toEqual(true)

@@ -55,6 +55,17 @@ describe('sagas/index', () => {
     })
   })
 
+  it('should handle REMOVE_TODO', () => {
+    testHelper.dispatch({
+      type: actions.REMOVE_TODO,
+      id: toggleTodoId
+    })
+    return testHelper.expectChange({
+      type: actions.REMOVED_TODO,
+      id: toggleTodoId
+    })
+  })
+
   afterAll(() => {
     return testHelper.clearSaga()
   })

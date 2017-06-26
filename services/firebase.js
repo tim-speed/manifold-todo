@@ -10,6 +10,8 @@ if (config.firebase.useMockDB) {
   // Setup real firebase DB
   firebase.initializeApp(config.firebase)
   database = firebase.database()
+} else {
+  database = firebase.apps[0].database()
 }
 
 export default database

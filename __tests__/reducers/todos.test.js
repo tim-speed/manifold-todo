@@ -71,4 +71,19 @@ describe('reducer/todos', () => {
       }
     ])
   })
+
+  it('should handle REMOVED_TODO', () => {
+    expect(
+      reducer([
+        {
+          id: 'test',
+          completed: false,
+          text: 'Remove Test'
+        }
+      ], {
+        id: 'test',
+        type: actions.REMOVED_TODO
+      })
+    ).toEqual([])
+  })
 })
